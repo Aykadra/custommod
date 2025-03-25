@@ -2,10 +2,14 @@ package com.example.elouancustommod.crafting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
+import com.example.elouancustommod.ElouanCustomMod;
 import com.example.elouancustommod.EnchantmentTransposer;
 
 import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -13,10 +17,12 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
  * Special recipe type for transposing enchantments.
@@ -120,6 +126,21 @@ public class EnchantmentTransposingRecipe extends CustomRecipe {
 	private boolean canDisenchant(ItemStack transposer, ItemStack target) {
 		return EnchantmentHelper.getEnchantmentsForCrafting(target).keySet().stream()
 				.anyMatch(((EnchantmentTransposer) transposer.getItem())::canTranspose);
+	}
+
+	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE,
+			ElouanCustomMod.MOD_ID);
+
+	public static final Supplier<RecipeType<EnchantmentTransposingRecipe>> ENCHANTMENT_TRANSPOSER = RECIPE_TYPES
+			.register(
+					"enchantment_transposing",
+					// We need the qualifying generic here due to generics being generics.
+					() -> RecipeType.<EnchantmentTransposingRecipe>simple(
+							ResourceLocation.fromNamespaceAndPath(ElouanCustomMod.MOD_ID, "enchantment_transposing")));
+
+	@Override
+	public RecipeType<?> getType() {
+		return ENCHANTMENT_TRANSPOSER.get();
 	}
 
 }

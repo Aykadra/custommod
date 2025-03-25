@@ -1,11 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "conditions": [
-    {
-      "type": "elouancustommod:is_enabled",
-      "item": "elouancustommod:enchantment_transposer"
-    }
-  ],
   "pattern": ["pnp", "lXl", "brb"],
   "key": {
     "X": {
