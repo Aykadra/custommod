@@ -1,4 +1,4 @@
-package com.example.elouancustommod.item.custom;
+package com.example.elouancustommod.item;
 
 import java.util.List;
 import net.minecraft.core.Holder;

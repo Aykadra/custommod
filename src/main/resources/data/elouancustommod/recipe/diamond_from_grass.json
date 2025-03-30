@@ -1,0 +1,14 @@
+{
+  "type": "elouancustommod:right_click_block",
+  "state": {
+    "Name": "minecraft:grass_block",
+    "Properties": {}
+  },
+  "ingredient": {
+    "item": "minecraft:book"
+  },
+  "result": {
+    "id": "minecraft:diamond",
+    "count": 1
+  }
+}

@@ -2,6 +2,7 @@ package com.example.elouancustommod;
 
 import com.example.elouancustommod.registries.ModItems;
 import com.example.elouancustommod.registries.ModRecipes;
+import com.example.elouancustommod.tuto.EventHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
@@ -29,6 +30,7 @@ public class ElouanCustomMod {
     modEventBus.addListener(this::commonSetup);
 
     NeoForge.EVENT_BUS.register(this);
+    NeoForge.EVENT_BUS.register(EventHandler.class);
     ModItems.register(modEventBus);
     ModRecipes.register(modEventBus);
 
@@ -38,6 +40,10 @@ public class ElouanCustomMod {
     // Register our mod's ModConfigSpec so that FML can create and load the config
     // file for us
     modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+  }
+
+  public static Logger getLogger() {
+    return LOGGER;
   }
 
   private void commonSetup(final FMLCommonSetupEvent event) {}

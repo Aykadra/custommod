@@ -1,7 +1,7 @@
 package com.example.elouancustommod.registries;
 
 import com.example.elouancustommod.ElouanCustomMod;
-import com.example.elouancustommod.item.custom.EnchantmentTransposer;
+import com.example.elouancustommod.item.EnchantmentTransposer;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
