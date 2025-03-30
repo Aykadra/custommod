@@ -2,7 +2,7 @@ package com.example.elouancustommod.registries;
 
 import com.example.elouancustommod.ElouanCustomMod;
 import com.example.elouancustommod.crafting.EnchantmentTransposingRecipe;
-import com.example.elouancustommod.crafting.TransposingRecipeSerializer;
+import com.example.elouancustommod.crafting.EnchantmentTransposingRecipeSerializer;
 import com.example.elouancustommod.tuto.RightClickBlockRecipe;
 import com.example.elouancustommod.tuto.RightClickBlockRecipeSerializer;
 import java.util.function.Supplier;
@@ -24,7 +24,8 @@ public class ModRecipes {
           SERIALIZERS.register("right_click_block", RightClickBlockRecipeSerializer::new);
   public static final Supplier<RecipeSerializer<EnchantmentTransposingRecipe>>
       ENCHANTMENT_TRANSPOSING_RECIPE_SERIALIZER =
-          SERIALIZERS.register("enchantment_transposing", TransposingRecipeSerializer::new);
+          SERIALIZERS.register(
+              "enchantment_transposing", EnchantmentTransposingRecipeSerializer::new);
 
   public static final Supplier<RecipeType<RightClickBlockRecipe>> RIGHT_CLICK_BLOCK_RECIPE_TYPE =
       TYPES.register(
@@ -37,7 +38,6 @@ public class ModRecipes {
       ENCHANTMENT_TRANSPOSING_RECIPE_TYPE =
           TYPES.register(
               "enchantment_transposing",
-              // We need the qualifying generic here due to generics being generics.
               () ->
                   RecipeType.<EnchantmentTransposingRecipe>simple(
                       ResourceLocation.fromNamespaceAndPath(

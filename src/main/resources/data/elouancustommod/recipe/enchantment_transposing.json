@@ -1,3 +1,13 @@
 {
-  "type": "elouancustommod:enchantment_transposing"
+  "type": "elouancustommod:enchantment_transposing",
+  "transposer": {
+    "item": "elouancustommod:enchantment_transposer"
+  },
+  "enchanted_item": {
+    "tag": "minecraft:enchanted_items"
+  },
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "count": 1
+  }
 }
