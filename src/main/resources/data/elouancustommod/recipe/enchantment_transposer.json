@@ -1,27 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": ["pnp", "lXl", "brb"],
+  "pattern": [
+    "lll",
+    "lol",
+    "lll"
+  ],
   "key": {
-    "X": {
+    "o": {
       "item": "minecraft:book"
-    },
-    "b": {
-      "item": "minecraft:blaze_powder"
     },
     "l": {
       "item": "minecraft:lapis_lazuli"
-    },
-    "p": {
-      "item": "minecraft:prismarine_crystals"
-    },
-    "n": {
-      "item": "minecraft:gold_nugget"
-    },
-    "r": {
-      "item": "minecraft:redstone"
     }
   },
   "result": {
-    "item": "elouancustommod:enchantment_transposer"
+    "count": 1,
+    "id": "elouancustommod:enchantment_transposer"
   }
 }

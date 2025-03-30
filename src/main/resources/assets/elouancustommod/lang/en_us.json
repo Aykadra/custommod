@@ -1,3 +1,4 @@
 {
-  "item.elouancustommod.enchantment_transposer": "Tome of Hungering Knowledge"
+  "item.elouancustommod.enchantment_transposer": "Tome of Hungering Knowledge",
+  "tooltip.elouancustommod.enchantment_transposer": "Devoures the enchants of an object it is crafted with"
 }
