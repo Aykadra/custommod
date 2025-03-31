@@ -1,14 +1,8 @@
 package com.example.elouancustommod;
 
-import com.example.elouancustommod.item.EnchantmentTransposerScreen;
 import com.example.elouancustommod.registries.*;
-import com.example.elouancustommod.tuto.EventHandler;
 import com.mojang.logging.LogUtils;
-import java.util.stream.Collectors;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -18,11 +12,9 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -36,20 +28,11 @@ public class ElouanCustomMod {
     modEventBus.addListener(this::commonSetup);
 
     NeoForge.EVENT_BUS.register(this);
-    NeoForge.EVENT_BUS.register(EventHandler.class);
     ModItems.register(modEventBus);
-    ModBlocks.register(modEventBus);
     ModRecipes.register(modEventBus);
-    ModBlockEntities.register(modEventBus);
-    ModMenuTypes.register(modEventBus);
 
     // Register the item to a creative tab
     modEventBus.addListener(this::addCreative);
-    LOGGER.debug("Test de logging - Si vous voyez ce message, le logging fonctionne");
-    LOGGER.info("Niveau INFO");
-    LOGGER.warn("Niveau WARN");
-    LOGGER.error("Niveau ERROR");
-    //
     modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
   }
 
@@ -64,27 +47,11 @@ public class ElouanCustomMod {
     if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
       event.accept(ModItems.ENCHANTEMENT_TRANSPOSER);
     }
-    if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-      event.accept(ModBlocks.TRANSPOSER_BLOCK);
-    }
   }
 
   // You can use SubscribeEvent and let the Event Bus discover methods to call
   @SubscribeEvent
-  public void onServerStarting(ServerStartingEvent event) {
-    MinecraftServer serverLevel = ServerLifecycleHooks.getCurrentServer();
-    if (serverLevel != null) {
-
-      RecipeManager recipes = serverLevel.getRecipeManager();
-      ;
-      // Like before, pass the desired recipe type.
-      LOGGER.debug(
-          "Types de recettes enregistrés: {}",
-          recipes.getOrderedRecipes().stream()
-              .map(RecipeHolder::toString)
-              .collect(Collectors.joining(", ")));
-    }
-  }
+  public void onServerStarting(ServerStartingEvent event) {}
 
   // You can use EventBusSubscriber to automatically register all static methods
   // in the class annotated with @SubscribeEvent
@@ -92,10 +59,5 @@ public class ElouanCustomMod {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {}
-
-    @SubscribeEvent
-    public static void registerScreens(RegisterMenuScreensEvent event) {
-      event.register(ModMenuTypes.TRANSPOSER_BLOCK_MENU.get(), EnchantmentTransposerScreen::new);
-    }
   }
 }

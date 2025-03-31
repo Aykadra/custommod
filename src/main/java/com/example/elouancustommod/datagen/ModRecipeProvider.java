@@ -1,7 +1,6 @@
 package com.example.elouancustommod.datagen;
 
 import com.example.elouancustommod.ElouanCustomMod;
-import com.example.elouancustommod.registries.ModBlocks;
 import com.example.elouancustommod.registries.ModItems;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -12,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import org.jetbrains.annotations.NotNull;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
   public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
@@ -94,7 +94,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
   }
 
   @Override
-  protected void buildRecipes(RecipeOutput recipeOutput) {
+  protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
 
     ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ENCHANTEMENT_TRANSPOSER.get())
         .pattern("BBB")
@@ -103,13 +103,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         .define('B', Items.LAPIS_LAZULI)
         .define('o', Items.BOOK)
         .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
-        .save(recipeOutput);
-    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TRANSPOSER_BLOCK.get())
-        .pattern("BBB")
-        .pattern("B B")
-        .pattern("BBB")
-        .define('B', Items.LAPIS_BLOCK)
-        .unlockedBy("has_lapis", has(Items.LAPIS_BLOCK))
         .save(recipeOutput);
   }
 }

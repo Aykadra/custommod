@@ -30,8 +30,4 @@ public class EnchantmentTransposer extends Item {
   public boolean canTranspose(Holder<Enchantment> enchant) {
     return true;
   }
-
-  public CreativeModeTab getCreativeTab() {
-    throw new UnsupportedOperationException("Unimplemented method 'getCreativeTab'");
-  }
 }
