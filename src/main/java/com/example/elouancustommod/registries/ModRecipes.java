@@ -1,6 +1,7 @@
 package com.example.elouancustommod.registries;
 
 import com.example.elouancustommod.ElouanCustomMod;
+import com.example.elouancustommod.crafting.AltEnchantmentTransposingRecipe;
 import com.example.elouancustommod.crafting.EnchantmentTransposingRecipe;
 import com.example.elouancustommod.crafting.EnchantmentTransposingRecipeSerializer;
 import com.example.elouancustommod.tuto.RightClickBlockRecipe;
@@ -26,6 +27,10 @@ public class ModRecipes {
       ENCHANTMENT_TRANSPOSING_RECIPE_SERIALIZER =
           SERIALIZERS.register(
               "enchantment_transposing", EnchantmentTransposingRecipeSerializer::new);
+  public static final Supplier<RecipeSerializer<AltEnchantmentTransposingRecipe>>
+      ALT_ENCHANTMENT_TRANSPOSING_RECIPE_SERIALIZER =
+          SERIALIZERS.register(
+              "alt_enchantment_transposing", () -> AltEnchantmentTransposingRecipe.SERIALIZER);
 
   public static final Supplier<RecipeType<RightClickBlockRecipe>> RIGHT_CLICK_BLOCK_RECIPE_TYPE =
       TYPES.register(
