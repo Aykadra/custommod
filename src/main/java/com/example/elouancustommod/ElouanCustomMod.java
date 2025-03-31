@@ -1,7 +1,7 @@
 package com.example.elouancustommod;
 
-import com.example.elouancustommod.registries.ModItems;
-import com.example.elouancustommod.registries.ModRecipes;
+import com.example.elouancustommod.item.EnchantmentTransposerScreen;
+import com.example.elouancustommod.registries.*;
 import com.example.elouancustommod.tuto.EventHandler;
 import com.mojang.logging.LogUtils;
 import java.util.stream.Collectors;
@@ -18,6 +18,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -37,7 +38,10 @@ public class ElouanCustomMod {
     NeoForge.EVENT_BUS.register(this);
     NeoForge.EVENT_BUS.register(EventHandler.class);
     ModItems.register(modEventBus);
+    ModBlocks.register(modEventBus);
     ModRecipes.register(modEventBus);
+    ModBlockEntities.register(modEventBus);
+    ModMenuTypes.register(modEventBus);
 
     // Register the item to a creative tab
     modEventBus.addListener(this::addCreative);
@@ -59,6 +63,9 @@ public class ElouanCustomMod {
   private void addCreative(BuildCreativeModeTabContentsEvent event) {
     if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
       event.accept(ModItems.ENCHANTEMENT_TRANSPOSER);
+    }
+    if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+      event.accept(ModBlocks.TRANSPOSER_BLOCK);
     }
   }
 
@@ -85,5 +92,10 @@ public class ElouanCustomMod {
   public static class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {}
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+      event.register(ModMenuTypes.TRANSPOSER_BLOCK_MENU.get(), EnchantmentTransposerScreen::new);
+    }
   }
 }
