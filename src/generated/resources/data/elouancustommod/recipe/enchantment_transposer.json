@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "o": {
+      "item": "minecraft:book"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BoB",
+    "BBB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "elouancustommod:enchantment_transposer"
+  }
+}
